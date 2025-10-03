@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pony Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Pony Store</h1>
+        <div class="user-info">
+            <span>Bienvenido, {{ usuario }} (Rol: {{ rol }})</span>
+            <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Información institucional -->
+        <section class="info">
+            <h2>Misión</h2>
+            <p>
+                Brindar a la comunidad pony una herramienta digital accesible, clara y actualizada que permita conocer la
+                mercancía oficial del Tecnológico de Morelia, facilitando la difusión de información y mejorando la experiencia
+                de estudiantes, docentes y público en general.
+            </p>
+
+            <h2>Visión</h2>
+            <p>
+                Convertirse en el catálogo digital de referencia del Tecnológico de Morelia, consolidando la Pony Store como
+                un medio práctico, confiable y moderno para consultar la mercancía oficial de la institución, contribuyendo
+                a la identidad y orgullo de la comunidad.
+            </p>
+
+            <h2>Valores</h2>
+            <ul class="valores">
+                <li>✔️ Calidad</li>
+                <li>✔️ Responsabilidad</li>
+                <li>✔️ Innovación</li>
+                <li>✔️ Compromiso con nuestros clientes</li>
+            </ul>
+        </section>
+
+        <!-- Ropa -->
+        <section>
+            <h2>Ropa</h2>
+            <div class="grid">
+                {% for item in ropa %}
+                <div class="card">
+                    <h3>{{ item['nombre'] }}</h3>
+                    <p><strong>Precio:</strong> ${{ "%.2f"|format(item['precio']) }}</p>
+                    <p><strong>Color:</strong> {{ item['color'] }}</p>
+                    {% if rol == "admin" %}
+                        <a href="{{ url_for('delete_item', categoria='ropa', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Comida -->
+        <section>
+            <h2>Comida y Bebidas</h2>
+            <div class="grid">
+                {% for item in comida %}
+                <div class="card">
+                    <h3>{{ item['nombre'] }}</h3>
+                    <p><strong>Precio:</strong> ${{ "%.2f"|format(item['precio']) }}</p>
+                    <p><strong>Color:</strong> {{ item['color'] }}</p>
+                    {% if rol == "admin" %}
+                        <a href="{{ url_for('delete_item', categoria='comida', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Panel Admin -->
+        {% if rol == "admin" %}
+        <section class="admin-panel">
+            <h2>Panel de Administración</h2>
+            <form method="POST" action="{{ url_for('add_item') }}" class="form-admin">
+    <select name="categoria" id="categoria" required onchange="toggleFields()">
+        <option value="ropa">Ropa</option>
+        <option value="comida">Comida</option>
+    </select>
+    <input type="text" name="nombre" placeholder="Nombre del producto" required>
+    <input type="text" name="color" placeholder="Color / Descripción" required>
+    <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+
+    <!-- Campos extra -->
+    <input type="text" name="talla" id="tallaField" placeholder="Tallas (S,M,G)">
+    <input type="number" name="stock" placeholder="Stock disponible" value="1" min="0">
+
+    <button type="submit">Agregar</button>
+</form>
+
+<script>
+function toggleFields() {
+    let categoria = document.getElementById("categoria").value;
+    document.getElementById("tallaField").style.display = categoria === "ropa" ? "block" : "none";
+}
+window.onload = toggleFields;
+</script>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Pony Store © 2025 - Proyecto demo IT Morelia</p>
+        <div class="w3c">
+            <a href="https://validator.w3.org/" target="_blank">
+                <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png" alt="HTML5 válido">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/" target="_blank">
+                <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS válido">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

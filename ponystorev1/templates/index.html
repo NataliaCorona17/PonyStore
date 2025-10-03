@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pony Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1, h2 { color: #2c3e50; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 5px 0; padding: 5px; border-bottom: 1px solid #ccc; }
+        a { color: red; text-decoration: none; margin-left: 10px; }
+        footer { margin-top: 40px; font-size: 0.9em; color: #555; }
+        .section { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <h1>Pony Store</h1>
+
+    <div class="section">
+        <h2>Misión</h2>
+        <p>Brindar a la comunidad pony una herramienta digital accesible, clara y actualizada que permita conocer la mercancía oficial del Tecnológico de Morelia, facilitando la difusión de información y mejorando la experiencia de estudiantes, docentes y público en general.</p>
+
+        <h2>Visión</h2>
+        <p>Convertirse en el catálogo digital de referencia del Tecnológico de Morelia, consolidando la Pony Store como un medio práctico, confiable y moderno para consultar la mercancía oficial de la institución, contribuyendo a la identidad y orgullo de la comunidad.</p>
+
+        <h2>Valores</h2>
+        <ul>
+            <li>Calidad</li>
+            <li>Responsabilidad</li>
+            <li>Innovación</li>
+            <li>Compromiso con nuestros clientes</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Ropa</h2>
+        <ul>
+            {% for item in ropa %}
+                <li>{{ item['nombre'] }} - ${{ "%.2f"|format(item['precio']) }} - {{ item['color'] }}
+                    <a href="/delete/ropa/{{ item['id'] }}">Borrar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Comida y Bebidas</h2>
+        <ul>
+            {% for item in comida %}
+                <li>{{ item['nombre'] }} - ${{ "%.2f"|format(item['precio']) }} - {{ item['color'] }}
+                    <a href="/delete/comida/{{ item['id'] }}">Borrar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>
+        <h6>Contacto: l23120532@morelia.tecnm.mx - l23120490@morelia.tecnm.mx</h6>
+    </footer>
+</body>
+</html>

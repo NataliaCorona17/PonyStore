@@ -1,0 +1,158 @@
+/* ======== RESET ======== */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ======== HEADER ======== */
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    font-size: 1.8rem;
+}
+header .user-info {
+    font-size: 0.9rem;
+}
+.btn-logout {
+    background: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+.btn-logout:hover {
+    background: #c0392b;
+}
+
+/* ======== SECCIONES ======== */
+main {
+    padding: 20px;
+}
+section {
+    margin-bottom: 40px;
+}
+.info {
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.info h2 {
+    margin-top: 10px;
+    color: #2c3e50;
+}
+.info p {
+    margin: 10px 0;
+}
+.valores {
+    list-style: none;
+    margin-top: 10px;
+}
+.valores li {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* ======== GRID DE PRODUCTOS ======== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+.card p {
+    margin: 5px 0;
+}
+.btn-delete {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* ======== PANEL ADMIN ======== */
+.admin-panel {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.form-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+.form-admin input, 
+.form-admin select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.form-admin button {
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.form-admin button:hover {
+    background: #1e8449;
+}
+
+/* ======== FOOTER ======== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2c3e50;
+    color: white;
+    margin-top: 40px;
+    font-size: 0.85rem;
+}
+.w3c {
+    margin-top: 10px;
+}
+.w3c img {
+    height: 40px;
+    margin: 0 8px;
+}

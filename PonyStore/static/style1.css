@@ -1,0 +1,77 @@
+CSS del login y registro
+/* Asegura que el contenedor principal ocupe toda la ventana */
+html, body { 
+    height: 100%; /* El 'html' debe tener altura para que 100vh funcione de forma consistente */
+    margin: 0;
+}
+
+body {
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    font-family: Arial, sans-serif;
+
+    /* Fondo con imagen (usando la forma abreviada para claridad) */
+    background: url('https://www.universitasm.com/wp-content/uploads/2019/03/TEC-DE-MORELIA.jpg')center/cover no-repeat;
+}
+
+/* Caja del login */
+.login-box {
+    background: rgb(27, 26, 26);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* El resto de tu código CSS para h1, input-group, input, button, p, y a es correcto. */
+/* Título */
+.login-box h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #e6dfdf;
+}
+
+/* Grupo de inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Inputs */
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+/* Botón */
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1rem;
+    background: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Texto extra */
+.login-box p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.login-box a {
+    color: #4a90e2;
+    text-decoration: none;
+}
