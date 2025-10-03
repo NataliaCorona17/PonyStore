@@ -62,7 +62,7 @@ def registro():
 
         conn = get_db_connection()
         conn.execute("INSERT INTO usuarios (usuario, contrasena, rol) VALUES (?, ?, ?)",
-                     (usuario, contrasena, "user"))  # nuevos son "user"
+                     (usuario, contrasena, "user"))
         conn.commit()
         conn.close()
         return redirect(url_for("login"))
@@ -108,15 +108,15 @@ def add_item():
     conn = get_db_connection()
 
     if categoria == "ropa":
-        talla = request.form.get("talla", "S,M,G")  # valor por defecto
-        stock = request.form.get("stock", 1)        # valor por defecto
+        talla = request.form.get("talla", "S,M,G")
+        stock = request.form.get("stock", 1)
         conn.execute(
             "INSERT INTO ropa (nombre, descripcion, color, precio, talla, stock) VALUES (?, ?, ?, ?, ?, ?)",
             (nombre, "Sin descripción", color, precio, talla, stock)
         )
 
     elif categoria == "comida":
-        stock = request.form.get("stock", 1)        # valor por defecto
+        stock = request.form.get("stock", 1)
         conn.execute(
             "INSERT INTO comida (nombre, descripcion, color, precio, stock) VALUES (?, ?, ?, ?, ?)",
             (nombre, "Sin descripción", color, precio, stock)
@@ -132,5 +132,7 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
+# ------------------ Run Flask ------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    # host=0.0.0.0 permite que otros dispositivos en la misma red accedan
+    app.run(host="0.0.0.0", port=5000, debug=True)
