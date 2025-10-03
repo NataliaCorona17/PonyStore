@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Pony Store</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+    <!-- Solo CSS desde GitHub Pages -->
+    <link rel="stylesheet" href="https://nataliacorona17.github.io/PonyStore/PonyStore/static/style_index.css">
 </head>
 <body>
     <header>
         <h1>Pony Store</h1>
         <div class="user-info">
-            <span>Bienvenido, {{ usuario }} (Rol: {{ rol }})</span>
-            <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar sesión</a>
+            <!-- Logout con data-href -->
+            <a href="#" data-href="{{ url_for('logout') }}" class="btn-logout">Cerrar sesión</a>
         </div>
     </header>
 
@@ -50,7 +51,8 @@
                     <p><strong>Precio:</strong> ${{ "%.2f"|format(item['precio']) }}</p>
                     <p><strong>Color:</strong> {{ item['color'] }}</p>
                     {% if rol == "admin" %}
-                        <a href="{{ url_for('delete_item', categoria='ropa', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
+                        <!-- Delete con data-href -->
+                        <a href="#" data-href="{{ url_for('delete_item', categoria='ropa', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -67,7 +69,7 @@
                     <p><strong>Precio:</strong> ${{ "%.2f"|format(item['precio']) }}</p>
                     <p><strong>Color:</strong> {{ item['color'] }}</p>
                     {% if rol == "admin" %}
-                        <a href="{{ url_for('delete_item', categoria='comida', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
+                        <a href="#" data-href="{{ url_for('delete_item', categoria='comida', item_id=item['id']) }}" class="btn-delete">❌ Eliminar</a>
                     {% endif %}
                 </div>
                 {% endfor %}
@@ -78,29 +80,41 @@
         {% if rol == "admin" %}
         <section class="admin-panel">
             <h2>Panel de Administración</h2>
-            <form method="POST" action="{{ url_for('add_item') }}" class="form-admin">
-    <select name="categoria" id="categoria" required onchange="toggleFields()">
-        <option value="ropa">Ropa</option>
-        <option value="comida">Comida</option>
-    </select>
-    <input type="text" name="nombre" placeholder="Nombre del producto" required>
-    <input type="text" name="color" placeholder="Color / Descripción" required>
-    <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+            <!-- Form con data-action -->
+            <form method="POST" action="#" data-action="{{ url_for('add_item') }}" class="form-admin">
+                <select name="categoria" id="categoria" required onchange="toggleFields()">
+                    <option value="" disabled selected>-- Selecciona una categoría --</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="comida">Comida</option>
+                </select>
+                <input type="text" name="nombre" placeholder="Nombre del producto" required>
+                <input type="text" name="color" placeholder="Color / Descripción" required>
+                <input type="number" step="0.01" name="precio" placeholder="Precio" required>
 
-    <!-- Campos extra -->
-    <input type="text" name="talla" id="tallaField" placeholder="Tallas (S,M,G)">
-    <input type="number" name="stock" placeholder="Stock disponible" value="1" min="0">
+                <!-- Campos extra -->
+                <input type="text" name="talla" id="tallaField" placeholder="Tallas (S,M,G)">
+                <input type="number" name="stock" placeholder="Stock disponible" value="1" min="0">
 
-    <button type="submit">Agregar</button>
-</form>
+                <button type="submit">Agregar</button>
+            </form>
 
-<script>
-function toggleFields() {
-    let categoria = document.getElementById("categoria").value;
-    document.getElementById("tallaField").style.display = categoria === "ropa" ? "block" : "none";
-}
-window.onload = toggleFields;
-</script>
+            <script>
+            function toggleFields() {
+                let categoria = document.getElementById("categoria").value;
+                document.getElementById("tallaField").style.display = categoria === "ropa" ? "block" : "none";
+            }
+            window.onload = toggleFields;
+
+            // Reemplazar data-href por href en links
+            document.querySelectorAll('a[data-href]').forEach(a => {
+                a.href = a.dataset.href;
+            });
+
+            // Reemplazar data-action por action en forms
+            document.querySelectorAll('form[data-action]').forEach(f => {
+                f.action = f.dataset.action;
+            });
+            </script>
         </section>
         {% endif %}
     </main>
@@ -111,7 +125,7 @@ window.onload = toggleFields;
             <a href="https://validator.w3.org/" target="_blank">
                 <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_64.png" alt="HTML5 válido">
             </a>
-            <a href="https://jigsaw.w3.org/css-validator/" target="_blank">
+            <a href="https://jigsaw.w3.org/css-validator/validator?lang=es&profile=css3svg&uri=https%3A%2F%2Fnataliacorona17.github.io%2FPonyStore%2FPonyStore%2Fstatic%2Fstyle_index.css&usermedium=all&vextwarning=&warning=1" target="_blank">
                 <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS válido">
             </a>
         </div>
